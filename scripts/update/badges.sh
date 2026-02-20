@@ -22,12 +22,12 @@ while IFS= read -r line; do
   if [[ "$line" == "<!-- BADGES:START -->" ]]; then
     inside=1
     printf '%s\n' "$line"
-    printf '![React](https://img.shields.io/badge/React-%s-61DAFB?style=flat-square&logo=react&logoColor=white)\n' "$REACT_VERSION"
-    printf '![TypeScript](https://img.shields.io/badge/TypeScript-%s-3178C6?style=flat-square&logo=typescript&logoColor=white)\n' "$TS_VERSION"
-    printf '![Bun](https://img.shields.io/badge/Bun-1.x-FBF0DF?style=flat-square&logo=bun&logoColor=black)\n'
-    printf '![Hono](https://img.shields.io/badge/Hono-%s-E36002?style=flat-square&logo=hono&logoColor=white)\n' "$HONO_VERSION"
-    printf '![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=flat-square&logo=vite&logoColor=white)\n'
-    printf '![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)\n'
+    printf '![React](https://img.shields.io/badge/React-%s-61DAFB?style=flat&logo=react&logoColor=white)\n' "$REACT_VERSION"
+    printf '![TypeScript](https://img.shields.io/badge/TypeScript-%s-3178C6?style=flat&logo=typescript&logoColor=white)\n' "$TS_VERSION"
+    printf '![Bun](https://img.shields.io/badge/Bun-1.x-FBF0DF?style=flat&logo=bun&logoColor=black)\n'
+    printf '![Hono](https://img.shields.io/badge/Hono-%s-E36002?style=flat&logo=hono&logoColor=white)\n' "$HONO_VERSION"
+    printf '![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=flat&logo=vite&logoColor=white)\n'
+    printf '![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38BDF8?style=flat&logo=tailwindcss&logoColor=white)\n'
     continue
   fi
   if [[ "$line" == "<!-- BADGES:END -->" ]]; then
