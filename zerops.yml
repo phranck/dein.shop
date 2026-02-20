@@ -1,0 +1,70 @@
+zerops:
+  # BACKEND SERVICE (Hono + Bun)
+  - setup: backend
+    build:
+      base: bun@1
+      buildCommands:
+        - bun install
+        - bun run build --filter=@dein-shop/shared
+        - bun run build --filter=@dein-shop/backend
+      deployFiles:
+        - apps/backend/dist
+        - apps/backend/package.json
+        - node_modules
+        - packages/shared
+        - package.json
+      cache: node_modules
+    run:
+      base: bun@1
+      ports:
+        - port: 3000
+          httpSupport: true
+      envVariables:
+        HOST: 0.0.0.0
+        PORT: "3000"
+        NODE_ENV: production
+        DATABASE_PATH: /mnt/sharedstorage/deinshop.db
+        # Secrets (set in Zerops dashboard):
+        # RESEND_API_KEY
+        # SESSION_SECRET
+        # EMAIL_FROM
+      initCommands:
+        - while ! touch /mnt/sharedstorage/.probe 2>/dev/null; do sleep 1; done && rm -f /mnt/sharedstorage/.probe
+        - bun run apps/backend/dist/db/migrate.js
+      start: bun run apps/backend/dist/index.js
+
+  # FRONTEND SERVICE (React + Vite → Static)
+  - setup: frontend
+    build:
+      base: bun@1
+      buildCommands:
+        - bun install
+        - bun run build --filter=@dein-shop/shared
+        - bun run build --filter=@dein-shop/frontend
+      deployFiles:
+        - apps/frontend/dist
+      cache: node_modules
+    run:
+      base: nginx@1.22
+      ports:
+        - port: 80
+          httpSupport: true
+      envVariables:
+        VITE_API_URL: https://api.dein.shop/api
+
+  # DASHBOARD SERVICE (React + Vite → Static)
+  - setup: dashboard
+    build:
+      base: bun@1
+      buildCommands:
+        - bun install
+        - bun run build --filter=@dein-shop/shared
+        - bun run build --filter=@dein-shop/dashboard
+      deployFiles:
+        - apps/dashboard/dist
+      cache: node_modules
+    run:
+      base: nginx@1.22
+      ports:
+        - port: 80
+          httpSupport: true
