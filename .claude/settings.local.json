@@ -6,7 +6,11 @@
       "mcp__serena__activate_project",
       "mcp__serena__list_memories",
       "Skill(commit)",
-      "mcp__serena__get_symbols_overview"
+      "mcp__serena__get_symbols_overview",
+      "Skill(remember)",
+      "WebSearch",
+      "mcp__serena__find_file",
+      "mcp__serena__find_symbol"
     ]
   }
 }
