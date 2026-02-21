@@ -5,7 +5,8 @@
       "mcp__serena__list_dir",
       "mcp__serena__activate_project",
       "mcp__serena__list_memories",
-      "Skill(commit)"
+      "Skill(commit)",
+      "mcp__serena__get_symbols_overview"
     ]
   }
 }
