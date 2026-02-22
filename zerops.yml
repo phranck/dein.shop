@@ -2,7 +2,7 @@ zerops:
   # BACKEND SERVICE (Hono + Bun)
   - setup: backend
     build:
-      base: bun@1
+      base: bun@latest
       buildCommands:
         - bun install
         - bun run build --filter=@dein-shop/shared
@@ -15,7 +15,7 @@ zerops:
         - package.json
       cache: node_modules
     run:
-      base: bun@1
+      base: bun@latest
       ports:
         - port: 3000
           httpSupport: true
@@ -37,7 +37,7 @@ zerops:
   # FRONTEND SERVICE (React + Vite → Static)
   - setup: frontend
     build:
-      base: bun@1
+      base: bun@latest
       buildCommands:
         - bun install
         - bun run build --filter=@dein-shop/shared
@@ -56,7 +56,7 @@ zerops:
   # DASHBOARD SERVICE (React + Vite → Static)
   - setup: dashboard
     build:
-      base: bun@1
+      base: bun@latest
       buildCommands:
         - bun install
         - bun run build --filter=@dein-shop/shared
