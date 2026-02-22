@@ -2,7 +2,7 @@ zerops:
   # BACKEND SERVICE (Hono + Bun)
   - setup: backend
     build:
-      base: bun@latest
+      base: bun@1.1
       os: ubuntu
       buildCommands:
         - bun install
@@ -16,7 +16,7 @@ zerops:
         - package.json
       cache: node_modules
     run:
-      base: bun@latest
+      base: bun@1.1
       os: ubuntu
       ports:
         - port: 3000
@@ -39,7 +39,7 @@ zerops:
   # FRONTEND SERVICE (React + Vite → Static)
   - setup: frontend
     build:
-      base: bun@latest
+      base: bun@1.1
       os: ubuntu
       buildCommands:
         - bun install
@@ -59,7 +59,7 @@ zerops:
   # DASHBOARD SERVICE (React + Vite → Static)
   - setup: dashboard
     build:
-      base: bun@latest
+      base: bun@1.1
       os: ubuntu
       buildCommands:
         - bun install
