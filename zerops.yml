@@ -2,12 +2,11 @@ zerops:
   # BACKEND SERVICE (Hono + Bun)
   - setup: backend
     build:
-      base: bun@1.1
-      os: ubuntu
+      base: nodejs@22
       buildCommands:
-        - bun install
-        - bun run build --filter=@dein-shop/shared
-        - bun run build --filter=@dein-shop/backend
+        - npm install
+        - npm run build -w @dein-shop/shared
+        - npm run build -w @dein-shop/backend
       deployFiles:
         - apps/backend/dist
         - apps/backend/package.json
@@ -39,12 +38,11 @@ zerops:
   # FRONTEND SERVICE (React + Vite → Static)
   - setup: frontend
     build:
-      base: bun@1.1
-      os: ubuntu
+      base: nodejs@22
       buildCommands:
-        - bun install
-        - bun run build --filter=@dein-shop/shared
-        - bun run build --filter=@dein-shop/frontend
+        - npm install
+        - npm run build -w @dein-shop/shared
+        - npm run build -w @dein-shop/frontend
       deployFiles:
         - apps/frontend/dist
       cache: node_modules
@@ -59,12 +57,11 @@ zerops:
   # DASHBOARD SERVICE (React + Vite → Static)
   - setup: dashboard
     build:
-      base: bun@1.1
-      os: ubuntu
+      base: nodejs@22
       buildCommands:
-        - bun install
-        - bun run build --filter=@dein-shop/shared
-        - bun run build --filter=@dein-shop/dashboard
+        - npm install
+        - npm run build -w @dein-shop/shared
+        - npm run build -w @dein-shop/dashboard
       deployFiles:
         - apps/dashboard/dist
       cache: node_modules
