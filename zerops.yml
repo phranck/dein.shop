@@ -3,6 +3,7 @@ zerops:
   - setup: backend
     build:
       base: bun@latest
+      os: ubuntu
       buildCommands:
         - bun install
         - bun run build --filter=@dein-shop/shared
@@ -16,6 +17,7 @@ zerops:
       cache: node_modules
     run:
       base: bun@latest
+      os: ubuntu
       ports:
         - port: 3000
           httpSupport: true
@@ -38,6 +40,7 @@ zerops:
   - setup: frontend
     build:
       base: bun@latest
+      os: ubuntu
       buildCommands:
         - bun install
         - bun run build --filter=@dein-shop/shared
@@ -57,6 +60,7 @@ zerops:
   - setup: dashboard
     build:
       base: bun@latest
+      os: ubuntu
       buildCommands:
         - bun install
         - bun run build --filter=@dein-shop/shared
