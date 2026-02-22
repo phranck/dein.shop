@@ -1,5 +1,5 @@
 zerops:
-  # BACKEND SERVICE (Hono + Bun)
+  # BACKEND SERVICE (Hono + Node.js)
   - setup: backend
     build:
       base: nodejs@22
@@ -15,8 +15,7 @@ zerops:
         - package.json
       cache: node_modules
     run:
-      base: bun@1.1
-      os: ubuntu
+      base: nodejs@22
       ports:
         - port: 3000
           httpSupport: true
@@ -31,9 +30,9 @@ zerops:
         # EMAIL_FROM
       initCommands:
         - while ! touch /mnt/sharedstorage/.probe 2>/dev/null; do sleep 1; done && rm -f /mnt/sharedstorage/.probe
-        - bun run apps/backend/dist/db/migrate.js
-        - bun run apps/backend/dist/scripts/seed.js
-      start: bun run apps/backend/dist/index.js
+        - node apps/backend/dist/db/migrate.js
+        - node apps/backend/dist/scripts/seed.js
+      start: node apps/backend/dist/index.js
 
   # FRONTEND SERVICE (React + Vite → Static)
   - setup: frontend
